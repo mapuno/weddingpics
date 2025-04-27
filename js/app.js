@@ -8,7 +8,7 @@ function checkPassword() {
     sessionStorage.setItem('unlocked', 'true');
     document.getElementById("lockscreen").style.display = "none";
     document.getElementById("mainApp").style.display = "block";
-    loadPrompts();
+    loadPrompts(); // Only call loadPrompts when password is correct
   } else {
     errorMsg.textContent = "Wrong password. Try again.";
   }
@@ -19,7 +19,7 @@ if (sessionStorage.getItem('unlocked') === 'true') {
   document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("lockscreen").style.display = "none";
     document.getElementById("mainApp").style.display = "block";
-    loadPrompts();
+    loadPrompts(); // Only call loadPrompts when session is unlocked
   });
 }
 
@@ -33,7 +33,7 @@ async function loadPrompts() {
     const prompts = await response.json();
     promptsCache = prompts; // cache the prompts here
 
-    // Clear existing prompts
+    // Clear previous prompts before adding new ones
     container.innerHTML = "";
 
     prompts.forEach((text, index) => {
@@ -47,8 +47,12 @@ async function loadPrompts() {
       promptE2.className = "upload";
       promptE2.style.marginBottom = "20px"; 
       promptE2.innerHTML = `
+        <label for="file${index}">Upload Image:</label>
         <input type="file" accept="image/*" id="file${index}" />
-        <button onclick="uploadFile(${index})">Upload Photo</button>
+        <label for="file${index}-camera">Take Photo:</label>
+        <input type="file" accept="image/*" capture="camera" id="file${index}-camera" />
+        <br>
+        <button onclick="uploadFile(${index})">Submit Photo</button>
       `;
       container.appendChild(promptEl);
       container.appendChild(promptE2);
@@ -59,9 +63,13 @@ async function loadPrompts() {
 }
 
 async function uploadFile(index) {
-  const fileInput = document.getElementById(`file${index}`);
-  const file = fileInput.files[0];
-  if (!file) return alert("Please choose a file first.");
+  const fileInputUpload = document.getElementById(`file${index}`);
+  const fileInputCamera = document.getElementById(`file${index}-camera`);
+  
+  // Get the file from either input
+  let file = fileInputUpload.files[0] || fileInputCamera.files[0];
+  
+  if (!file) return alert("Please choose a photo (upload or take a photo).");
 
   const formData = new FormData();
   formData.append("file", file);
@@ -74,12 +82,10 @@ async function uploadFile(index) {
     });
     const text = await res.text();
     alert("Upload complete: " + text);
-    fileInput.value = ""; // reset input after upload
+    fileInputUpload.value = ""; // reset upload input after submit
+    fileInputCamera.value = ""; // reset camera input after submit
   } catch (err) {
     alert("Upload failed. Try again.");
     console.error(err);
   }
 }
-
-// Run it when page loads
-loadPrompts();
