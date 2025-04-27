@@ -10,6 +10,7 @@ body {
     margin: 0;                     /* Remove default margin */
     font-family: Arial, sans-serif; /* Set a default font */
     color: black;                  /* Set text color to white for contrast */
+    overflow: hidden;              /* Disable scrolling on the body */
   }
   
   /* Center the content (lockscreen and app) */
@@ -47,9 +48,9 @@ body {
     max-width: 800px;
     margin: 20px;
     padding: 20px;
-    /* background-color: rgba(0, 0, 0, 0.7); Semi-transparent black background for prompts */
-    /* border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+    height: 80vh;                  /* Set a fixed height for the container */
+    overflow-y: auto;              /* Enable vertical scrolling */
+    padding-right: 10px;           /* Avoid content being cut off when scrolled */
   }
   
   /* Style for each prompt and upload section */
@@ -69,21 +70,21 @@ body {
   }
   
   .upload button {
-    background-color: #007bff;
+    background-color: #8b8a25;
   }
   
   .upload button:hover {
-    background-color: #0056b3;
+    background-color: #8b8a25;
   }
   
   /* Custom "Take Photo" button */
-  button.take-photo {
+  /* button.take-photo {
     background-color: #28a745;
   }
   
   button.take-photo:hover {
     background-color: #218838;
-  }
+  } */
   
   /* Error message styling */
   #error {
