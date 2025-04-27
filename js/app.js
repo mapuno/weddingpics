@@ -36,6 +36,7 @@ async function loadPrompts() {
     prompts.forEach((text, index) => {
       const promptEl = document.createElement("div");
       promptEl.className = "prompt";
+      promptEl.style.marginBottom = "20px"; 
       promptEl.innerHTML = `
         <label>📸 ${text}</label>
         <input type="file" accept="image/*" id="file${index}" />
