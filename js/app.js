@@ -47,10 +47,11 @@ async function loadPrompts() {
       promptE2.className = "upload";
       promptE2.style.marginBottom = "20px"; 
       promptE2.innerHTML = `
+        <label for="file${index}-camera">Take Photo:</label>
+        <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" />
+        <button onclick="triggerCamera(${index})">Take Photo</button>
         <label for="file${index}">Upload Image:</label>
         <input type="file" accept="image/*" id="file${index}" />
-        <label for="file${index}-camera">Take Photo:</label>
-        <input type="file" accept="image/*" capture="camera" id="file${index}-camera" />
         <br>
         <button onclick="uploadFile(${index})">Submit Photo</button>
       `;
@@ -62,6 +63,13 @@ async function loadPrompts() {
   }
 }
 
+// Trigger the camera input when the custom "Take Photo" button is clicked
+function triggerCamera(index) {
+  const fileInputCamera = document.getElementById(`file${index}-camera`);
+  fileInputCamera.click(); // Open the camera input dialog
+}
+
+// Upload the selected file
 async function uploadFile(index) {
   const fileInputUpload = document.getElementById(`file${index}`);
   const fileInputCamera = document.getElementById(`file${index}-camera`);
