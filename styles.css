@@ -9,7 +9,7 @@ body {
     height: 100vh;                 /* Make the body take full viewport height */
     margin: 0;                     /* Remove default margin */
     font-family: Arial, sans-serif; /* Set a default font */
-    color: white;                  /* Set text color to white for contrast */
+    color: black;                  /* Set text color to white for contrast */
   }
   
   /* Center the content (lockscreen and app) */
