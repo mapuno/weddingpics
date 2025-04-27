@@ -33,6 +33,9 @@ async function loadPrompts() {
     const prompts = await response.json();
     promptsCache = prompts; // cache the prompts here
 
+    // Clear existing prompts
+    container.innerHTML = "";
+
     prompts.forEach((text, index) => {
       const promptEl = document.createElement("div");
       const promptE2 = document.createElement("div");
