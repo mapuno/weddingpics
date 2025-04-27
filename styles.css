@@ -1,0 +1,116 @@
+/* Global Styles */
+
+/* Set the background image for the entire webpage */
+body {
+    background-image: url('i_spy_bg.png'); /* Replace with your image path */
+    background-size: cover;        /* Make the image cover the entire screen */
+    background-position: center;   /* Center the image */
+    background-repeat: no-repeat;  /* Ensure the image does not repeat */
+    height: 100vh;                 /* Make the body take full viewport height */
+    margin: 0;                     /* Remove default margin */
+    font-family: Arial, sans-serif; /* Set a default font */
+    color: white;                  /* Set text color to white for contrast */
+  }
+  
+  /* Center the content (lockscreen and app) */
+  #lockscreen, #mainApp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+  }
+  
+  /* Lock screen styling */
+  #lockscreen {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black overlay */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Input fields and buttons */
+  input[type="password"], input[type="file"], button {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+  }
+  
+  /* Button hover effect */
+  button:hover {
+    background-color: #444;
+    cursor: pointer;
+  }
+  
+  /* Prompts container */
+  #promptsContainer {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background for prompts */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Style for each prompt and upload section */
+  .prompt {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Upload and Take Photo sections */
+  .upload {
+    margin-bottom: 20px;
+  }
+  
+  .upload input[type="file"] {
+    margin-right: 10px;
+  }
+  
+  .upload button {
+    background-color: #007bff;
+  }
+  
+  .upload button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Custom "Take Photo" button */
+  button.take-photo {
+    background-color: #28a745;
+  }
+  
+  button.take-photo:hover {
+    background-color: #218838;
+  }
+  
+  /* Error message styling */
+  #error {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  /* Main app content */
+  #mainApp {
+    display: none;
+  }
+  
+  /* Mobile responsiveness */
+  @media screen and (max-width: 768px) {
+    #promptsContainer {
+      width: 90%;
+    }
+  
+    input[type="password"], input[type="file"], button {
+      font-size: 14px;
+    }
+  }
+  
