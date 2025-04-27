@@ -41,9 +41,9 @@ async function loadPrompts() {
       promptEl.innerHTML = `
         <label>📸 ${text}</label>
       `;
-      promptEl.className = "upload";
-      promptEl.style.marginBottom = "20px"; 
-      promptEl.innerHTML = `
+      promptE2.className = "upload";
+      promptE2.style.marginBottom = "20px"; 
+      promptE2.innerHTML = `
         <input type="file" accept="image/*" id="file${index}" />
         <button onclick="uploadFile(${index})">Upload Photo</button>
       `;
