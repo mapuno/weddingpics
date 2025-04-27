@@ -35,14 +35,20 @@ async function loadPrompts() {
 
     prompts.forEach((text, index) => {
       const promptEl = document.createElement("div");
+      const promptE2 = document.createElement("div");
       promptEl.className = "prompt";
-      promptEl.style.marginBottom = "20px"; 
+      promptEl.style.marginBottom = "10px"; 
       promptEl.innerHTML = `
         <label>📸 ${text}</label>
+      `;
+      promptEl.className = "upload";
+      promptEl.style.marginBottom = "20px"; 
+      promptEl.innerHTML = `
         <input type="file" accept="image/*" id="file${index}" />
         <button onclick="uploadFile(${index})">Upload Photo</button>
       `;
       container.appendChild(promptEl);
+      container.appendChild(promptE2);
     });
   } catch (error) {
     console.error("Failed to load prompts:", error);
