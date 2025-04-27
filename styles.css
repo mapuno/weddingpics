@@ -41,21 +41,15 @@ body {
     font-size: 16px;
   }
   
-  /* Button hover effect */
-  button:hover {
-    background-color: #444;
-    cursor: pointer;
-  }
-  
   /* Prompts container */
   #promptsContainer {
     width: 80%;
     max-width: 800px;
     margin: 20px;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background for prompts */
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.7); Semi-transparent black background for prompts */
+    /* border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
   }
   
   /* Style for each prompt and upload section */
