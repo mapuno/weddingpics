@@ -72,27 +72,30 @@ function triggerCamera(index) {
 async function uploadFile(index) {
   const fileInputUpload = document.getElementById(`file${index}`);
   const fileInputCamera = document.getElementById(`file${index}-camera`);
-  
-  // Get the file from either input
   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
-  
-  if (!file) return alert("Please choose a photo (upload or take a photo).");
+  if (!file) return alert("Please choose a photo.");
 
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("prompt", promptsCache[index]); // use cached prompt
+  const reader = new FileReader();
+  reader.onload = async function (e) {
+    const base64Data = e.target.result.split(",")[1]; // remove data:*/*;base64, part
+    const payload = {
+      file: base64Data,
+      name: file.name,
+      prompt: promptsCache[index]
+    };
 
-  try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
-      method: "POST",
-      body: formData,
-    });
-    const text = await res.text();
-    alert("Upload complete: " + text);
-    fileInputUpload.value = ""; // reset upload input after submit
-    fileInputCamera.value = ""; // reset camera input after submit
-  } catch (err) {
-    alert("Upload failed. Try again.");
-    console.error(err);
-  }
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" }
+      });
+      const text = await res.text();
+      alert("Upload complete: " + text);
+    } catch (err) {
+      alert("Upload failed. Try again.");
+      console.error(err);
+    }
+  };
+  reader.readAsDataURL(file); // reads and triggers `onload`
 }
