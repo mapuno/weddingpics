@@ -69,6 +69,8 @@ function triggerCamera(index) {
 }
 
 // Upload the selected file
+
+//test
 async function uploadFile(index) {
   const fileInputUpload = document.getElementById(`file${index}`);
   const fileInputCamera = document.getElementById(`file${index}-camera`);
@@ -76,26 +78,59 @@ async function uploadFile(index) {
   if (!file) return alert("Please choose a photo.");
 
   const reader = new FileReader();
-  reader.onload = async function (e) {
-    const base64Data = e.target.result.split(",")[1]; // remove data:*/*;base64, part
-    const payload = {
-      file: base64Data,
-      name: file.name,
-      prompt: promptsCache[index]
-    };
+  reader.onloadend = async () => {
+    const base64 = reader.result.split(",")[1];
+
+    const body = JSON.stringify({
+      file: base64,
+      prompt: promptsCache[index],
+      name: file.name
+    });
 
     try {
       const res = await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
         method: "POST",
-        body: JSON.stringify(payload),
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
+        body
       });
       const text = await res.text();
       alert("Upload complete: " + text);
     } catch (err) {
-      alert("Upload failed. Try again.");
       console.error(err);
+      alert("Upload failed: " + err.message);
     }
   };
-  reader.readAsDataURL(file); // reads and triggers `onload`
+
+  reader.readAsDataURL(file);
 }
+
+// async function uploadFile(index) {
+//   const fileInputUpload = document.getElementById(`file${index}`);
+//   const fileInputCamera = document.getElementById(`file${index}-camera`);
+//   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
+//   if (!file) return alert("Please choose a photo.");
+
+//   const reader = new FileReader();
+//   reader.onload = async function (e) {
+//     const base64Data = e.target.result.split(",")[1]; // remove data:*/*;base64, part
+//     const payload = {
+//       file: base64Data,
+//       name: file.name,
+//       prompt: promptsCache[index]
+//     };
+
+//     try {
+//       const res = await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
+//         method: "POST",
+//         body: JSON.stringify(payload),
+//         headers: { "Content-Type": "application/json" }
+//       });
+//       const text = await res.text();
+//       alert("Upload complete: " + text);
+//     } catch (err) {
+//       alert("Upload failed. Try again.");
+//       console.error(err);
+//     }
+//   };
+//   reader.readAsDataURL(file); // reads and triggers `onload`
+// }
