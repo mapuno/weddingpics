@@ -54,6 +54,19 @@ async function loadPrompts() {
         <br>
         <button onclick="uploadFile(${index})">Submit Photo</button>
       `;
+
+      promptE2.innerHTML = `
+        <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" onchange="showPreview(this, ${index})" />
+        <button onclick="triggerCamera(${index})">Take Photo</button>
+        <label for="file${index}"> or upload image:</label>
+        <input type="file" accept="image/*" id="file${index}" onchange="showPreview(this, ${index})" />
+        <br>
+        <img id="preview${index}" style="max-width: 100%; max-height: 200px; display: none; margin-top: 10px;" />
+        <br>
+        <button onclick="uploadFile(${index})">Submit Photo</button>
+        <button onclick="clearPhoto(${index})" style="margin-left: 10px;">Clear Photo</button>
+      `;
+      
       container.appendChild(promptEl);
       container.appendChild(promptE2);
     });
@@ -74,9 +87,15 @@ async function uploadFile(index) {
   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
   if (!file) return alert("Please choose a photo.");
 
+  // Create and show spinner
+  const spinner = document.createElement("div");
+  spinner.className = "spinner";
+  spinner.id = `spinner-${index}`;
+  fileInputUpload.parentNode.appendChild(spinner);
+
   const reader = new FileReader();
   reader.onload = async function (e) {
-    const base64Data = e.target.result.split(",")[1]; // remove data:*/*;base64, part
+    const base64Data = e.target.result.split(",")[1];
     const payload = {
       file: base64Data,
       name: file.name,
@@ -90,12 +109,40 @@ async function uploadFile(index) {
         mode: "no-cors",
         headers: { "Content-Type": "application/json" }
       });
-      const text = await res.text();
-      alert("Upload complete: " + text);
+
+      alert("Upload complete!");
     } catch (err) {
       alert("Upload failed. Try again.");
       console.error(err);
+    } finally {
+      // Remove spinner
+      const existing = document.getElementById(`spinner-${index}`);
+      if (existing) existing.remove();
     }
   };
-  reader.readAsDataURL(file); // reads and triggers `onload`
+  reader.readAsDataURL(file);
+}
+
+function clearPhoto(index) {
+  document.getElementById(`file${index}`).value = "";
+  document.getElementById(`file${index}-camera`).value = "";
+  const preview = document.getElementById(`preview${index}`);
+  preview.src = "";
+  preview.style.display = "none";
+}
+
+function showPreview(input, index) {
+  const file = input.files[0];
+  const preview = document.getElementById(`preview${index}`);
+  
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.src = e.target.result;
+      preview.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  } else {
+    preview.style.display = "none";
+  }
 }
