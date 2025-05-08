@@ -68,42 +68,6 @@ function triggerCamera(index) {
   fileInputCamera.click(); // Open the camera input dialog
 }
 
-// Upload the selected file
-
-//test
-// async function uploadFile(index) {
-//   const fileInputUpload = document.getElementById(`file${index}`);
-//   const fileInputCamera = document.getElementById(`file${index}-camera`);
-//   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
-//   if (!file) return alert("Please choose a photo.");
-
-//   const reader = new FileReader();
-//   reader.onloadend = async () => {
-//     const base64 = reader.result.split(",")[1];
-
-//     const body = JSON.stringify({
-//       file: base64,
-//       prompt: promptsCache[index],
-//       name: file.name
-//     });
-
-//     try {
-//       const res = await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body
-//       });
-//       const text = await res.text();
-//       alert("Upload complete: " + text);
-//     } catch (err) {
-//       console.error(err);
-//       alert("Upload failed: " + err.message);
-//     }
-//   };
-
-//   reader.readAsDataURL(file);
-// }
-
 async function uploadFile(index) {
   const fileInputUpload = document.getElementById(`file${index}`);
   const fileInputCamera = document.getElementById(`file${index}-camera`);

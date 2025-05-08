@@ -93,9 +93,13 @@ body {
     font-size: 14px;
   }
   
-  /* Main app content */
-  #mainApp {
-    display: none;
+  .gallery-link {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 40px;
+    color: #9c8726;
+    text-decoration: underline;
   }
   
   /* Mobile responsiveness */
