@@ -61,7 +61,7 @@ async function loadPrompts() {
         <label for="file${index}"> or upload image:</label>
         <input type="file" accept="image/*" id="file${index}" onchange="showPreview(this, ${index})" />
         <br>
-        <img id="preview${index}" style="max-width: 100%; max-height: 200px; display: none; margin-top: 10px;" />
+        <img id="preview${index}" class="image-preview" style="max-width: 100%; max-height: 200px; display: none; margin-top: 10px;" />
         <br>
         <button onclick="uploadFile(${index})">Submit Photo</button>
         <button onclick="clearPhoto(${index})" style="margin-left: 10px;">Clear Photo</button>

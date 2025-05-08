@@ -111,6 +111,14 @@ body {
     text-decoration: underline;
   }
   
+  .image-preview {
+    max-width: 100%;
+    max-height: 200px;
+    display: none;
+    margin: 10px auto;
+    display: block;
+  }
+  
   /* Mobile responsiveness */
   @media screen and (max-width: 768px) {
     #promptsContainer {
