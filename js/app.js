@@ -46,14 +46,14 @@ async function loadPrompts() {
       `;
       promptE2.className = "upload";
       promptE2.style.marginBottom = "20px"; 
-      promptE2.innerHTML = `
-        <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" />
-        <button onclick="triggerCamera(${index})">Take Photo</button>
-        <label for="file${index}"> or upload image:</label>
-        <input type="file" accept="image/*" id="file${index}" />
-        <br>
-        <button onclick="uploadFile(${index})">Submit Photo</button>
-      `;
+      // promptE2.innerHTML = `
+      //   <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" />
+      //   <button onclick="triggerCamera(${index})">Take Photo</button>
+      //   <label for="file${index}"> or upload image:</label>
+      //   <input type="file" accept="image/*" id="file${index}" />
+      //   <br>
+      //   <button onclick="uploadFile(${index})">Submit Photo</button>
+      // `;
 
       promptE2.innerHTML = `
         <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" onchange="showPreview(this, ${index})" />
