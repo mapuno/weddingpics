@@ -84,14 +84,9 @@ function triggerCamera(index) {
 async function uploadFile(index) {
   const fileInputUpload = document.getElementById(`file${index}`);
   const fileInputCamera = document.getElementById(`file${index}-camera`);
+  const submitButton = document.querySelectorAll("button")[index * 2 + 1]; // Assumes button order: Take Photo, Submit Photo
   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
   if (!file) return alert("Please choose a photo.");
-
-  // Create and show spinner
-  const spinner = document.createElement("div");
-  spinner.className = "spinner";
-  spinner.id = `spinner-${index}`;
-  fileInputUpload.parentNode.appendChild(spinner);
 
   const reader = new FileReader();
   reader.onload = async function (e) {
@@ -102,6 +97,8 @@ async function uploadFile(index) {
       prompt: promptsCache[index]
     };
 
+    submitButton.textContent = "Uploading..."; // Change button text
+
     try {
       const res = await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
         method: "POST",
@@ -109,19 +106,17 @@ async function uploadFile(index) {
         mode: "no-cors",
         headers: { "Content-Type": "application/json" }
       });
-
-      alert("Upload complete!");
+      submitButton.textContent = "Submit Photo"; // Restore text
+      alert("Upload complete.");
     } catch (err) {
+      submitButton.textContent = "Submit Photo"; // Restore text on error too
       alert("Upload failed. Try again.");
       console.error(err);
-    } finally {
-      // Remove spinner
-      const existing = document.getElementById(`spinner-${index}`);
-      if (existing) existing.remove();
     }
   };
   reader.readAsDataURL(file);
 }
+
 
 function clearPhoto(index) {
   document.getElementById(`file${index}`).value = "";
