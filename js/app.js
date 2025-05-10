@@ -47,7 +47,6 @@ async function loadPrompts() {
       `;
       promptE2.className = "upload";
       promptE2.style.marginBottom = "20px"; 
-
       promptE2.innerHTML = `
         <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" onchange="showPreview(this, ${index})" />
         <button onclick="triggerCamera(${index})">Take Photo</button>
@@ -59,17 +58,17 @@ async function loadPrompts() {
         <button id="submitButton${index}" onclick="uploadFile(${index})">Submit Photo</button>
         <button onclick="clearPhoto(${index})" style="margin-left: 10px;">Clear Photo</button>
       `;
-      
-      galleryLink = document.createElement("a");
-      galleryLink.className = "gallery-link";
-      galleryLink.href = "https://drive.google.com/drive/u/1/folders/1TQnuVAn82nwzeSxaPk_JRwai2g4E4Cup";
-      galleryLink.target = "_blank";
-      galleryLink.textContent = "View Gallery";
 
       container.appendChild(promptEl);
       container.appendChild(promptE2);
     });
-    container.appendChild(galleryLink);
+    // galleryLink = document.createElement("a");
+    // galleryLink.className = "gallery-link";
+    // galleryLink.href = "https://drive.google.com/drive/u/1/folders/1TQnuVAn82nwzeSxaPk_JRwai2g4E4Cup";
+    // galleryLink.target = "_blank";
+    // galleryLink.textContent = "View Gallery";
+
+    // container.appendChild(galleryLink);
   } catch (error) {
     console.error("Failed to load prompts:", error);
   }
