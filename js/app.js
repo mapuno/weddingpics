@@ -1,4 +1,4 @@
-const correctPassword = "SLRO17052026"; 
+const correctPassword = "SR170526"; 
 
 function checkPassword() {
   const input = document.getElementById("passwordInput").value;

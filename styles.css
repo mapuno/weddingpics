@@ -46,11 +46,11 @@ body {
   #promptsContainer {
     width: 80%;
     max-width: 800px;
-    margin: 20px;
+    margin-top: 20px;
     padding: 20px;
-    height: 80vh;                  /* Set a fixed height for the container */
+    height: 60%;                  /* Set a fixed height for the container */
     overflow-y: auto;              /* Enable vertical scrolling */
-    padding-right: 10px;           /* Avoid content being cut off when scrolled */
+    /* padding-right: 10px;           Avoid content being cut off when scrolled */
   }
   
   /* Style for each prompt and upload section */
