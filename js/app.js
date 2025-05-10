@@ -67,8 +67,15 @@ async function loadPrompts() {
         <button onclick="clearPhoto(${index})" style="margin-left: 10px;">Clear Photo</button>
       `;
       
+      galleryLink = document.createElement("a");
+      galleryLink.className = "gallery-link";
+      galleryLink.href = "https://drive.google.com/drive/u/1/folders/1TQnuVAn82nwzeSxaPk_JRwai2g4E4Cup";
+      galleryLink.target = "_blank";
+      galleryLink.textContent = "View Gallery";
+
       container.appendChild(promptEl);
       container.appendChild(promptE2);
+      container.appendChild(galleryLink);
     });
   } catch (error) {
     console.error("Failed to load prompts:", error);
