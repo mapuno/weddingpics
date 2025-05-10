@@ -46,11 +46,30 @@ body {
   #promptsContainer {
     width: 80%;
     max-width: 800px;
-    margin-top: 20px;
+    margin: 20px;
     padding: 20px;
     height: 60%;                  /* Set a fixed height for the container */
     overflow-y: auto;              /* Enable vertical scrolling */
     /* padding-right: 10px;           Avoid content being cut off when scrolled */
+  }
+
+  /* Prompts container */
+  #galleryLinkContainer {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px;
+    padding: 20px;
+    height: 10%;                  /* Set a fixed height for the container */
+    /* padding-right: 10px;           Avoid content being cut off when scrolled */
+  }
+
+  .gallery-link {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 40px;
+    color: #9c8726;
+    text-decoration: underline;
   }
   
   /* Style for each prompt and upload section */
@@ -82,15 +101,6 @@ body {
     color: red;
     margin-top: 10px;
     font-size: 14px;
-  }
-  
-  .gallery-link {
-    display: block;
-    text-align: center;
-    font-size: 20px;
-    margin-top: 40px;
-    color: #9c8726;
-    text-decoration: underline;
   }
   
   .image-preview {
