@@ -48,7 +48,7 @@ body {
     max-width: 800px;
     margin: 20px;
     padding: 20px;
-    height: 60%;                  /* Set a fixed height for the container */
+    height: 80%;                  /* Set a fixed height for the container */
     overflow-y: auto;              /* Enable vertical scrolling */
     /* padding-right: 10px;           Avoid content being cut off when scrolled */
   }
@@ -58,7 +58,7 @@ body {
     width: 80%;
     max-width: 800px;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 10px;
     height: 10%;                  /* Set a fixed height for the container */
     /* padding-right: 10px;           Avoid content being cut off when scrolled */
   }
