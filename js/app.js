@@ -104,6 +104,7 @@ async function uploadFile(index) {
       prompt: promptsCache[index]
     };
 
+    submitButton.disabled = true; // Disable the button to prevent multiple uploads
     submitButton.textContent = "Uploading..."; // Change button text
 
     try {
