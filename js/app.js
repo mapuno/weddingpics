@@ -6,6 +6,7 @@ function checkPassword() {
 
   if (input === correctPassword) {
     sessionStorage.setItem('unlocked', 'true');
+    sessionStorage.setItem('userName', nameInput.value);
     document.getElementById("lockscreen").style.display = "none";
     document.getElementById("mainApp").style.display = "block";
     loadPrompts(); // Only call loadPrompts when password is correct
@@ -67,9 +68,8 @@ async function loadPrompts() {
 
       container.appendChild(promptEl);
       container.appendChild(promptE2);
-    
-      container.appendChild(galleryLink);
     });
+    container.appendChild(galleryLink);
   } catch (error) {
     console.error("Failed to load prompts:", error);
   }
