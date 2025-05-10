@@ -57,7 +57,7 @@ body {
   #galleryLinkContainer {
     width: 80%;
     max-width: 800px;
-    margin: 20px;
+    margin-bottom: 20px;
     padding: 20px;
     height: 10%;                  /* Set a fixed height for the container */
     /* padding-right: 10px;           Avoid content being cut off when scrolled */
