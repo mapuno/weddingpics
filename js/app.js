@@ -6,7 +6,6 @@ function checkPassword() {
 
   if (input === correctPassword) {
     sessionStorage.setItem('unlocked', 'true');
-    sessionStorage.setItem('userName', nameInput.value);
     document.getElementById("lockscreen").style.display = "none";
     document.getElementById("mainApp").style.display = "block";
     loadPrompts(); // Only call loadPrompts when password is correct
@@ -84,7 +83,7 @@ async function uploadFile(index) {
   const fileInputUpload = document.getElementById(`file${index}`);
   const fileInputCamera = document.getElementById(`file${index}-camera`);
   const submitButton = document.getElementById(`submitButton${index}`);
-  const userName = sessionStorage.getItem('userName') || "Anon";
+  const userName = document.getElementById("nameInput").value
   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
   if (!file) return alert("Please choose a photo.");
 
