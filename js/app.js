@@ -46,14 +46,6 @@ async function loadPrompts() {
       `;
       promptE2.className = "upload";
       promptE2.style.marginBottom = "20px"; 
-      // promptE2.innerHTML = `
-      //   <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" />
-      //   <button onclick="triggerCamera(${index})">Take Photo</button>
-      //   <label for="file${index}"> or upload image:</label>
-      //   <input type="file" accept="image/*" id="file${index}" />
-      //   <br>
-      //   <button onclick="uploadFile(${index})">Submit Photo</button>
-      // `;
 
       promptE2.innerHTML = `
         <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" onchange="showPreview(this, ${index})" />
@@ -63,7 +55,7 @@ async function loadPrompts() {
         <br>
         <img id="preview${index}" class="image-preview" style="max-width: 100%; max-height: 200px; display: none; margin-top: 10px;" />
         <br>
-        <button onclick="uploadFile(${index})">Submit Photo</button>
+        <button id="submitButton${index}" onclick="uploadFile(${index})">Submit Photo</button>
         <button onclick="clearPhoto(${index})" style="margin-left: 10px;">Clear Photo</button>
       `;
       
@@ -75,6 +67,7 @@ async function loadPrompts() {
 
       container.appendChild(promptEl);
       container.appendChild(promptE2);
+    
       container.appendChild(galleryLink);
     });
   } catch (error) {
@@ -91,7 +84,7 @@ function triggerCamera(index) {
 async function uploadFile(index) {
   const fileInputUpload = document.getElementById(`file${index}`);
   const fileInputCamera = document.getElementById(`file${index}-camera`);
-  const submitButton = document.querySelectorAll("button")[index * 2 + 1]; // Assumes button order: Take Photo, Submit Photo
+  const submitButton = document.getElementById(`submitButton${index}`);
   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
   if (!file) return alert("Please choose a photo.");
 
