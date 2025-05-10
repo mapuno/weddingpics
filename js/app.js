@@ -85,6 +85,7 @@ async function uploadFile(index) {
   const fileInputUpload = document.getElementById(`file${index}`);
   const fileInputCamera = document.getElementById(`file${index}-camera`);
   const submitButton = document.getElementById(`submitButton${index}`);
+  const name = sessionStorage.getItem('userName') || "Anon";
   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
   if (!file) return alert("Please choose a photo.");
 
@@ -94,7 +95,8 @@ async function uploadFile(index) {
     const payload = {
       file: base64Data,
       name: file.name,
-      prompt: promptsCache[index]
+      prompt: promptsCache[index],
+      user: name
     };
 
     submitButton.disabled = true; // Disable the button to prevent multiple uploads
