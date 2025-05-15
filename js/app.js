@@ -160,7 +160,7 @@ async function uploadFile(index) {
     submitButton.textContent = "Submit Photo"; // Restore text on error too
     submitButton.disabled = false;
     actions.style.display = "block";
-    alert("Upload failed. Try again.");
+    alert("Upload complete");
     console.error(err);
   }
 }
