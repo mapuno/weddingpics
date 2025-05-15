@@ -49,7 +49,7 @@ async function loadPrompts() {
       promptE2.innerHTML = `
         <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" onchange="showPreview(this, ${index})" />
         <button onclick="triggerCamera(${index})">Take Photo</button>
-        <label class="upload-button">
+        <label style="padding: 10px; margin-left: 10px; border-radius: 5px; border: 1px solid #fff; background-color: #333; color: white; font-size: 16px; cursor: pointer;">
           Upload Image
           <input type="file" accept="image/*" id="file${index}" onchange="showPreview(this, ${index})" style="display: none;" />
         </label>

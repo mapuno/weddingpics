@@ -88,15 +88,8 @@ body {
     margin-right: 10px;
   }
   
-  .upload-button {
-    padding: 10px;
-    margin-left: 10px;
-    border-radius: 5px;
-    border: 1px solid #fff;
+  .upload button {
     background-color: #9c8726;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
   }
   
   .upload button:hover {
