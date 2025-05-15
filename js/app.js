@@ -115,7 +115,6 @@ async function uploadFile(index) {
 
       // Hide actions, show success message
       actions.style.display = "none";
-      successMsg.style.display = "block";
 
       // Clear file inputs
       fileInputUpload.value = "";
@@ -125,6 +124,7 @@ async function uploadFile(index) {
     } catch (err) {
       submitButton.textContent = "Submit Photo"; // Restore text on error too
       submitButton.disabled = false;
+      actions.style.display = "block";
       alert("Upload failed. Try again.");
       console.error(err);
     }
