@@ -10,18 +10,25 @@ body {
     margin: 0;                     /* Remove default margin */
     font-family: Arial, sans-serif; /* Set a default font */
     color: black;                  /* Set text color to white for contrast */
-    overflow: hidden;              /* Disable scrolling on the body */
+    overflow: auto;              /* Disable scrolling on the body */
   }
   
-  /* Center the content (lockscreen and app) */
-  #lockscreen, #mainApp {
+  #lockscreen {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     margin-top: 10%;
     height: 100%;
   }
+
+  #mainApp {
+    margin-top: 120px; /* Push it lower down the page */
+    display: block;
+    text-align: center;
+  }
+  
   
   /* Lock screen styling */
   #lockscreen {
