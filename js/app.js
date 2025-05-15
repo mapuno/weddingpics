@@ -138,35 +138,32 @@ async function uploadFile(index) {
     user: userName
   };
 
-    submitButton.disabled = true; // Disable the button to prevent multiple uploads
-    submitButton.textContent = "Uploading..."; // Change button text
+  submitButton.disabled = true; // Disable the button to prevent multiple uploads
+  submitButton.textContent = "Uploading..."; // Change button text
 
-    try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
-        method: "POST",
-        body: JSON.stringify(payload),
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" }
-      });
-      submitButton.textContent = "Submit Photo"; // Restore text
-      submitButton.disabled = false;
-      actions.style.display = "none";
-      fileInputUpload.value = "";
-      fileInputCamera.value = "";
-      imagePreview.style.display = "none";
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" }
+    });
+    submitButton.textContent = "Submit Photo"; // Restore text
+    submitButton.disabled = false;
+    actions.style.display = "none";
+    fileInputUpload.value = "";
+    fileInputCamera.value = "";
+    imagePreview.style.display = "none";
 
-      alert("Upload complete.");
-    } catch (err) {
-      submitButton.textContent = "Submit Photo"; // Restore text on error too
-      submitButton.disabled = false;
-      actions.style.display = "block";
-      alert("Upload failed. Try again.");
-      console.error(err);
-    }
-  };
-  reader.readAsDataURL(file);
+    alert("Upload complete.");
+  } catch (err) {
+    submitButton.textContent = "Submit Photo"; // Restore text on error too
+    submitButton.disabled = false;
+    actions.style.display = "block";
+    alert("Upload failed. Try again.");
+    console.error(err);
+  }
 }
-
 
 function clearPhoto(index) {
   document.getElementById(`file${index}`).value = "";
