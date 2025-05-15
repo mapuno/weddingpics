@@ -6,6 +6,7 @@ body {
     background-size: cover;        /* Make the image cover the entire screen */
     background-position: center;   /* Center the image */
     background-repeat: no-repeat;  /* Ensure the image does not repeat */
+    background-attachment: fixed;
     height: 100vh;                 /* Make the body take full viewport height */
     margin: 0;                     /* Remove default margin */
     font-family: Arial, sans-serif; /* Set a default font */

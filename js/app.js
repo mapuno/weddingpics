@@ -142,7 +142,7 @@ async function uploadFile(index) {
   submitButton.textContent = "Uploading..."; // Change button text
 
   try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbzmuv9iZZ_6MFLccSf-oTUB9gdpZ5urfgXMWMYHaXeBQ0h1VIAYqUYHacywUhExioIsMQ/exec", {
       method: "POST",
       body: JSON.stringify(payload),
       mode: "no-cors",
@@ -153,7 +153,7 @@ async function uploadFile(index) {
     actions.style.display = "none";
     fileInputUpload.value = "";
     fileInputCamera.value = "";
-    imagePreview.style.display = "none";
+    // imagePreview.style.display = "none";
 
     alert("Upload complete.");
   } catch (err) {
