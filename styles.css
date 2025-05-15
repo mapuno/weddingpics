@@ -86,6 +86,23 @@ body {
     font-weight: bold;
   }
   
+  .submit-button {
+    background-color: #28a745; /* bright green */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
   /* Upload and Take Photo sections */
   .upload {
     margin-bottom: 20px;
