@@ -10,7 +10,7 @@ body {
     margin: 0;                     /* Remove default margin */
     font-family: Arial, sans-serif; /* Set a default font */
     color: black;                  /* Set text color to white for contrast */
-    overflow: auto;              /* Disable scrolling on the body */
+    /* overflow: auto;              /* Disable scrolling on the body */
   }
   
   #lockscreen {
@@ -87,15 +87,13 @@ body {
   }
   
   .submit-button {
-    background-color: #28a745; /* bright green */
+    background-color: #28a745 !important; /* bright green */
     color: white;
     font-size: 18px;
     font-weight: bold;
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
   .submit-button:hover {
