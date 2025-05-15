@@ -153,7 +153,7 @@ async function uploadFile(index) {
     actions.style.display = "none";
     fileInputUpload.value = "";
     fileInputCamera.value = "";
-    // imagePreview.style.display = "none";
+    imagePreview.style.display = "none";
 
     alert("Upload complete.");
   } catch (err) {
