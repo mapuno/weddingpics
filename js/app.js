@@ -49,10 +49,8 @@ async function loadPrompts() {
       promptE2.innerHTML = `
         <input type="file" accept="image/*" capture="camera" id="file${index}-camera" style="display:none;" onchange="showPreview(this, ${index})" />
         <button onclick="triggerCamera(${index})">Take Photo</button>
-        <label style="padding: 10px; margin-left: 10px; border-radius: 5px; border: 1px solid #fff; background-color: #333; color: white; font-size: 16px; cursor: pointer;">
-          Upload Image
-          <input type="file" accept="image/*" id="file${index}" onchange="showPreview(this, ${index})" style="display: none;" />
-        </label>
+        <input type="file" accept="image/*" id="file${index}" style="display:none;" onchange="showPreview(this, ${index})" />
+        <button onclick="triggerUpload(${index})">Upload Image</button>
         <br>
         <img id="preview${index}" class="image-preview" style="max-width: 100%; max-height: 200px; display: none; margin-top: 10px;" />
         <br>
@@ -67,6 +65,11 @@ async function loadPrompts() {
   } catch (error) {
     console.error("Failed to load prompts:", error);
   }
+}
+
+//Trigger upload image file
+function triggerUpload(index) {
+  document.getElementById(`file${index}`).click();
 }
 
 // Trigger the camera input when the custom "Take Photo" button is clicked
