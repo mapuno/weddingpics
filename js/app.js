@@ -148,21 +148,18 @@ async function uploadFile(index) {
       mode: "no-cors",
       headers: { "Content-Type": "application/json" }
     });
-    submitButton.textContent = "Submit Photo"; // Restore text
-    submitButton.disabled = false;
-    actions.style.display = "none";
-    fileInputUpload.value = "";
-    fileInputCamera.value = "";
-    imagePreview.style.display = "none";
-
     alert("Upload complete.");
   } catch (err) {
-    submitButton.textContent = "Submit Photo"; // Restore text on error too
-    submitButton.disabled = false;
-    actions.style.display = "block";
+    
     alert("Upload complete");
     console.error(err);
   }
+  submitButton.textContent = "Submit Photo"; // Restore text
+  submitButton.disabled = false;
+  actions.style.display = "none";
+  fileInputUpload.value = "";
+  fileInputCamera.value = "";
+  imagePreview.style.display = "none";
 }
 
 function clearPhoto(index) {
