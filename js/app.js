@@ -134,7 +134,7 @@ async function uploadFile(index) {
   const payload = {
     file: base64Data,
     name: file.name,
-    prompt: promptsCache[index],
+    prompt: promptsCache[index].split(" ").slice(-3).join(" "),
     user: userName
   };
 
