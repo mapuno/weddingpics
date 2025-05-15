@@ -54,8 +54,10 @@ async function loadPrompts() {
         <br>
         <img id="preview${index}" class="image-preview" style="max-width: 100%; max-height: 200px; display: none; margin-top: 10px;" />
         <br>
-        <button id="submitButton${index}" onclick="uploadFile(${index})">Submit Photo</button>
-        <button onclick="clearPhoto(${index})" style="margin-left: 10px;">Clear Photo</button>
+        <div id="actions${index}" style="display: none;">
+          <button id="submitButton${index}" onclick="uploadFile(${index})">Submit Photo</button>
+          <button onclick="clearPhoto(${index})" style="margin-left: 10px;">Clear Photo</button>
+        </div>
       `;
 
       container.appendChild(promptEl);
@@ -83,6 +85,8 @@ async function uploadFile(index) {
   const fileInputCamera = document.getElementById(`file${index}-camera`);
   const submitButton = document.getElementById(`submitButton${index}`);
   const userName = document.getElementById("nameInput").value
+  const actions = document.getElementById(`actions${index}`);
+
   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
   if (!file) return alert("Please choose a photo.");
 
@@ -107,9 +111,20 @@ async function uploadFile(index) {
         headers: { "Content-Type": "application/json" }
       });
       submitButton.textContent = "Submit Photo"; // Restore text
+      submitButton.disabled = false;
+
+      // Hide actions, show success message
+      actions.style.display = "none";
+      successMsg.style.display = "block";
+
+      // Clear file inputs
+      fileInputUpload.value = "";
+      fileInputCamera.value = "";
+
       alert("Upload complete.");
     } catch (err) {
       submitButton.textContent = "Submit Photo"; // Restore text on error too
+      submitButton.disabled = false;
       alert("Upload failed. Try again.");
       console.error(err);
     }
@@ -129,15 +144,18 @@ function clearPhoto(index) {
 function showPreview(input, index) {
   const file = input.files[0];
   const preview = document.getElementById(`preview${index}`);
+  const actions = document.getElementById(`actions${index}`);
   
   if (file) {
     const reader = new FileReader();
     reader.onload = function(e) {
       preview.src = e.target.result;
       preview.style.display = "block";
+      actions.style.display = "block";
     };
     reader.readAsDataURL(file);
   } else {
     preview.style.display = "none";
+    actions.style.display = "none"
   }
 }
