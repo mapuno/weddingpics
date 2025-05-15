@@ -78,6 +78,47 @@ function triggerCamera(index) {
   fileInputCamera.click(); // Open the camera input dialog
 }
 
+function resizeImage(file, maxSize = 1024) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      img.src = e.target.result;
+    };
+
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      let width = img.width;
+      let height = img.height;
+
+      // Maintain aspect ratio
+      if (width > height) {
+        if (width > maxSize) {
+          height = height * (maxSize / width);
+          width = maxSize;
+        }
+      } else {
+        if (height > maxSize) {
+          width = width * (maxSize / height);
+          height = maxSize;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // Compress as JPEG (smaller than PNG), quality 0.7
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+      resolve(dataUrl.split(",")[1]); // base64 string
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
 async function uploadFile(index) {
   const fileInputUpload = document.getElementById(`file${index}`);
   const fileInputCamera = document.getElementById(`file${index}-camera`);
@@ -89,15 +130,13 @@ async function uploadFile(index) {
   let file = fileInputUpload.files[0] || fileInputCamera.files[0];
   if (!file) return alert("Please choose a photo.");
 
-  const reader = new FileReader();
-  reader.onload = async function (e) {
-    const base64Data = e.target.result.split(",")[1];
-    const payload = {
-      file: base64Data,
-      name: file.name,
-      prompt: promptsCache[index],
-      user: userName
-    };
+  const base64Data = await resizeImage(file);  // ← use resized image
+  const payload = {
+    file: base64Data,
+    name: file.name,
+    prompt: promptsCache[index],
+    user: userName
+  };
 
     submitButton.disabled = true; // Disable the button to prevent multiple uploads
     submitButton.textContent = "Uploading..."; // Change button text
